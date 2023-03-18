@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <item
+        android:id="@+id/homeFragment2"
+        android:title="@string/home"
+        android:icon="@drawable/home_svg_"
+        app:showAsAction="ifRoom"/>
+
+    <item
+        android:id="@+id/bookmarksFragment"
+        android:title="@string/Bookmarks"
+        android:icon="@drawable/bookmarks_hand"
+        app:showAsAction="always"/>
+
+    <item
+        android:id="@+id/askFragment"
+        android:title="@string/ask"
+        android:icon="@drawable/school_doubt"
+        app:showAsAction="always"/>
+</menu>

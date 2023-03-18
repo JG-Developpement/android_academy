@@ -1,0 +1,48 @@
+<resources>
+    <string name="app_name">Android Académie</string>
+    <string name="last_articles">Derniers articles</string>
+    <string name="see_next">Voir la suite</string>
+    <string name="see_more">Voir plus</string>
+    <string name="question_suivante">Question Suivante</string>
+    <string name="error_occured">Désolé une ereur est survenu</string>
+    <string name="add_to_bookmark">L\'article a bien été ajouté dans vos marque-page</string>
+    <string name="date_category_item_list">%1$s - %2$s</string>
+    <!-- Category -->
+    <string name="interview">Entretien Android</string>
+    <string name="interview_kotlin">Entretien Kotlin</string>
+    <string name="qcm_android">QCM Android</string>
+    <string name="qcm_k">QCM Kotlin</string>
+    <string name="security_android">Sécurité Android</string>
+    <string name="theory_course">Cours théorique</string>
+    <string name="actuality">Actualités</string>
+    <string name="git_trick">Astuce Git</string>
+    <string name="other">Autre</string>
+    <string name="android">Android</string>
+    <string name="kotlin">Kotlin</string>
+    <!-- Login -->
+    <string name="welcome">Bienvenue Dans</string>
+    <string name="start_learn">Commencer à Apprendre</string>
+    <string name="typed_text">L\'Académie Android</string>
+    <!-- Content description -->
+    <string name="add_bookmark_btn">Ajouter dans vos marque page</string>
+    <string name="top_article_android_image">Image du top article Android</string>
+    <string name="android_academy_logo">Android académie logo</string>
+    <string name="article_image">Article image</string>
+    <string name="fullscreen_code_view">Image du code en plein écran</string>
+    <string name="image_top_article_kotlin">Image du top article kotlin</string>
+    <!-- Interview -->
+    <string name="next_page">Page suivante</string>
+    <string name="back_page">Page Précédente</string>
+    <string name="image_top_article_other">Image du top article autres</string>
+    <!-- Bottom nav -->
+    <string name="home">Accueil</string>
+    <string name="Bookmarks">Marque page</string>
+    <string name="ask">Question</string>
+    <!-- Search view -->
+    <string name="search">Search</string>
+    <!-- Qcm -->
+    <string name="score">Votre score est de %1$s / 5</string>
+    <string name="good_answer">Bonne réponse</string>
+    <string name="wrong_answer">Faux !! La bonne réponse est %1$s</string>
+    <string name="qcm_null">null</string>
+</resources>

@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:id="@+id/bookmark_layout"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".bookmarks.BookmarksFragment">
+
+    <!-- Loading panel -->
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/login_progress_layout"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:background="@color/white"
+        android:elevation="55dp"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <ProgressBar
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:indeterminate="true"
+            android:indeterminateTint="@color/dark_green"
+            android:indeterminateTintMode="src_atop"
+            style="?android:attr/progressBarStyle"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+    <!-- Loading panel end -->
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recycler_bookmark"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:paddingBottom="70dp"
+        android:clipToPadding="false"
+        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:itemCount="10"
+        tools:listitem="@layout/article_item_list"/>
+
+    <View
+        android:id="@+id/textureView"
+        android:layout_width="0dp"
+        android:layout_height="120dp"
+        android:background="@drawable/transparency_back"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

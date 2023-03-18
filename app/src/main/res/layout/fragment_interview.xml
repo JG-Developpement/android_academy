@@ -1,0 +1,139 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.core.widget.NestedScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:id="@+id/interview_layout"
+    android:fillViewport="true"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".interview.InterviewFragment">
+
+<androidx.constraintlayout.widget.ConstraintLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <!-- Loading panel -->
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/login_progress_layout"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:background="@color/white"
+        android:elevation="55dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <ProgressBar
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:indeterminate="true"
+            android:indeterminateTint="@color/dark_green"
+            android:indeterminateTintMode="src_atop"
+            style="?android:attr/progressBarStyle"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+    <!-- Loading panel end -->
+
+    <TextView
+        android:id="@+id/interview_ask_title"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="48dp"
+        android:layout_marginEnd="8dp"
+        android:fontFamily="@font/amatic"
+        tools:text="Qu'est ce qu'un Service ?"
+        android:textAlignment="center"
+        android:textColor="@color/dark_gray"
+        android:textSize="38sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/interview_ask_categories"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/julee"
+        tools:text="Android - Question entretien"
+        android:textAlignment="center"
+        android:textColor="@color/dark_green"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/interview_ask_title" />
+
+    <TextView
+        android:id="@+id/interview_ask_answer"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="32dp"
+        android:layout_marginEnd="24dp"
+        android:layout_marginBottom="32dp"
+        android:fontFamily="@font/julee"
+        android:letterSpacing="0.1"
+        android:scrollHorizontally="true"
+        android:textAlignment="gravity"
+        android:textColor="@color/dark_gray"
+        android:textSize="16sp"
+        app:layout_constraintBottom_toTopOf="@+id/interview_next_btn"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/bookmark_floatBtn"
+        app:lineHeight="30dp"
+        tools:text="Contrairement à une opinion répandue, le Lorem Ipsum n'est pas simplement du texte aléatoire.\n\n Il trouve ses racines dans une oeuvre de la littérature latine classique datant de 45 av. J.-C., le rendant vieux de 2000 ans. Un professeur du Hampden-Sydney College, en Virginie, s'est intéressé à un des mots latins les plus obscurs, consectetur, extrait d'un passage du Lorem Ipsum, et en étudiant tous les usages de ce mot dans la littérature classique,\n\n découvrit la source incontestable du Lorem Ipsum. Il provient en fait des sections 1.10.32 et 1.10.33 du &quot;De Finibus Bonorum et Malorum&quot; (Des Suprêmes Biens et des Suprêmes Maux) de Cicéron. Cet ouvrage, très populaire pendant la Renaissance, est un traité sur la théorie de l'éthique. Les premières lignes du Lorem Ipsum, &quot;Lorem ipsum dolor sit amet...&quot;,\n\n proviennent de la section 1.10.32.  L'extrait standard de Lorem Ipsum utilisé depuis le XVIè siècle est reproduit ci-dessous pour les curieux. Les sections 1.10.32 et 1.10.33 du &quot;De Finibus Bonorum et Malorum&quot; de Cicéron sont aussi reproduites dans leur version originale, accompagnée de la traduction anglaise de H. Rackham (1914)." />
+
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/interview_next_btn"
+        style="@style/login_button"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:visibility="gone"
+        android:layout_marginTop="80dp"
+        android:layout_marginBottom="20dp"
+        android:elevation="10dp"
+        android:text="@string/next_page"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/interview_ask_answer"
+        app:layout_constraintBottom_toTopOf="@+id/interview_back_btn"/>
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/interview_back_btn"
+        style="@style/login_button"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="32dp"
+        android:visibility="gone"
+        android:elevation="10dp"
+        android:text="@string/back_page"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/interview_next_btn" />
+
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/bookmark_floatBtn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
+        android:elevation="10dp"
+        android:src="@drawable/bookmark_new"
+        android:contentDescription="@string/add_bookmark_btn"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/interview_ask_categories"
+        app:tint="@color/dark_green" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
+
+</androidx.core.widget.NestedScrollView>
