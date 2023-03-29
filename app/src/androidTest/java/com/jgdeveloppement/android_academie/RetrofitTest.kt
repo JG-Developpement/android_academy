@@ -37,12 +37,37 @@ class RetrofitTest {
     }
 
     @Test
+    fun getEnArticles() {
+        runBlocking {
+            val articles = listOf(Article(1, Categories.QCM_KOTLIN, "QCM_KOTLIN", "22/03/2023"),
+                Article(2, Categories.INTERVIEW_ANDROID, "INTERVIEW_ANDROID", "24/03/2023"))
+            Mockito.`when`(apiService.getEnArticles(anyString())).thenReturn(articles)
+
+            val result = apiService.getEnArticles(key)
+
+            assertEquals(articles, result)
+        }
+    }
+
+    @Test
     fun getArticleById() {
         runBlocking {
             val article = Article(1, Categories.QCM_KOTLIN, "QCM_KOTLIN", "22/03/2023")
             Mockito.`when`(apiService.getArticleById(anyInt(), anyString())).thenReturn(listOf(article))
 
             val result = apiService.getArticleById(1, key)
+
+            assertEquals(article, result.first())
+        }
+    }
+
+    @Test
+    fun getEnArticleById() {
+        runBlocking {
+            val article = Article(1, Categories.QCM_KOTLIN, "QCM_KOTLIN", "22/03/2023")
+            Mockito.`when`(apiService.getEnArticleById(anyInt(), anyString())).thenReturn(listOf(article))
+
+            val result = apiService.getEnArticleById(1, key)
 
             assertEquals(article, result.first())
         }
@@ -62,6 +87,19 @@ class RetrofitTest {
     }
 
     @Test
+    fun getEnInterviewAsks() {
+        runBlocking {
+            val interviewAsks = listOf(InterviewAsk(1, 1, "ask", "answer", 1),
+                InterviewAsk(2, 1, "ask1", "answer1", 2))
+            Mockito.`when`(apiService.getEnInterviewAsks(anyString())).thenReturn(interviewAsks)
+
+            val result = apiService.getEnInterviewAsks(key)
+
+            assertEquals(interviewAsks, result)
+        }
+    }
+
+    @Test
     fun getQuiz() {
         runBlocking {
             val quiz = listOf(Quiz(1, 1, "quizAsk", "qcmA", "qcmB", "qcmC", "qcmD", "quizAnswer"),
@@ -69,6 +107,19 @@ class RetrofitTest {
             Mockito.`when`(apiService.getQuiz(anyString())).thenReturn(quiz)
 
             val result = apiService.getQuiz(key)
+
+            assertEquals(quiz, result)
+        }
+    }
+
+    @Test
+    fun getEnQuiz() {
+        runBlocking {
+            val quiz = listOf(Quiz(1, 1, "quizAsk", "qcmA", "qcmB", "qcmC", "qcmD", "quizAnswer"),
+                Quiz(2, 1, "quizAsk1", "qcmA1", "qcmB1", "qcmC1", "qcmD1", "quizAnswer1"))
+            Mockito.`when`(apiService.getEnQuiz(anyString())).thenReturn(quiz)
+
+            val result = apiService.getEnQuiz(key)
 
             assertEquals(quiz, result)
         }

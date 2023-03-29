@@ -19,3 +19,4 @@ data class Article(
     @Expose
     val date: String
     )
+

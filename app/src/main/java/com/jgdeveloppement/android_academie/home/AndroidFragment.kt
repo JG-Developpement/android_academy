@@ -62,7 +62,6 @@ class AndroidFragment : Fragment(), ArticleAdapter.OnClickItem {
         articles.lastOrNull { it.categories == Categories.INTERVIEW_ANDROID || it.categories == Categories.ANDROID || it.categories == Categories.QCM_ANDROID }
             ?.let { article ->
                 binding.androidTopArticleTitle.text = article.title
-                binding.seeAndroidTopArticle.setOnClickListener { navigateToArticle(article.id, article.categories) }
                 binding.androidTopArticleCard.setOnClickListener { navigateToArticle(article.id, article.categories) }
                 binding.androidBookmarkBtn.setOnClickListener {
                     val bookmark = Bookmark(null, article.id, 1)

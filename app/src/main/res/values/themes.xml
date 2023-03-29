@@ -23,7 +23,7 @@
         <item name="android:fontFamily">@font/shadows_light</item>
         <item name="android:background">@drawable/background_button</item>
         <item name="android:textColor">@color/light_gray</item>
-        <item name="android:textSize">16sp</item>
+        <item name="android:textSize">@dimen/login_btn_txt_size</item>
         <item name="android:textStyle">bold</item>
         <item name="android:layout_marginStart">32dp</item>
         <item name="android:layout_marginEnd">32dp</item>

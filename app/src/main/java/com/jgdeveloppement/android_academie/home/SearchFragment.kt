@@ -43,10 +43,15 @@ class SearchFragment : Fragment(), ArticleAdapter.OnClickItem {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         navController = Navigation.findNavController(view)
-        NavigationUI.setupActionBarWithNavController(requireActivity() as AppCompatActivity, navController)
-        (activity as AppCompatActivity).supportActionBar?.setLogo(null)
+
         setupViewModel()
         initArticles()
+    }
+
+    override fun onResume() {
+        super.onResume()
+        NavigationUI.setupActionBarWithNavController(requireActivity() as AppCompatActivity, navController)
+        (activity as AppCompatActivity).supportActionBar?.setLogo(null)
     }
 
     private fun setupViewModel() {

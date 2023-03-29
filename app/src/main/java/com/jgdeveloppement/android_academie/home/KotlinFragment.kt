@@ -62,7 +62,6 @@ class KotlinFragment : Fragment(), ArticleAdapter.OnClickItem {
         articles.lastOrNull { it.categories == Categories.INTERVIEW_KOTLIN || it.categories == Categories.KOTLIN || it.categories == Categories.QCM_KOTLIN }
             ?.let { article ->
                 binding.kotlinTopArticleTitle.text = article.title
-                binding.seeKotlinTopArticle.setOnClickListener { navigateToArticle(article.id, article.categories) }
                 binding.kotlinTopArticleCard.setOnClickListener { navigateToArticle(article.id, article.categories) }
                 binding.kotlinBookmarkBtn.setOnClickListener {
                     val bookmark = Bookmark(null, article.id, 1)

@@ -19,3 +19,18 @@
 # If you keep the line number information, uncomment this to
 # hide the original source file name.
 #-renamesourcefileattribute SourceFile
+-printconfiguration C:/Users/julie/OneDrive/Bureau/Développement/Android-Académie/full-r8-config.txt
+
+-keepclasseswithmembers class * {
+    @retrofit2.http.* <methods>;
+}
+-keepclassmembernames interface * {
+    @retrofit2.http.* <methods>;
+}
+
+# GSON Annotations
+-keepclassmembers class * {
+  @com.google.gson.annotations.SerializedName <fields>;
+}
+
+-keepclassmembers class com.jgdeveloppement.android_academie.model.** { *; }

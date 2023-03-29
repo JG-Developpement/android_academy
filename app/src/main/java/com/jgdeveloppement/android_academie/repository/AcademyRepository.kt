@@ -8,6 +8,7 @@ import com.jgdeveloppement.android_academie.retrofit.ApiHelper
 import com.jgdeveloppement.android_academie.room.AcademyHelper
 import com.jgdeveloppement.android_academie.utils.Resource
 import kotlinx.coroutines.Dispatchers
+import java.util.*
 
 class AcademyRepository(private val academyHelper: AcademyHelper, private val apiHelper: ApiHelper) {
 
@@ -16,6 +17,7 @@ class AcademyRepository(private val academyHelper: AcademyHelper, private val ap
     /////////
 
     private val key = BuildConfig.API_KEY
+    private val isFr = Locale.getDefault().language == "fr"
 
     fun getBookmarkByArticleId(articleId: Int) = liveData(Dispatchers.IO) {
         emit(Resource.loading(data = null))
@@ -56,7 +58,10 @@ class AcademyRepository(private val academyHelper: AcademyHelper, private val ap
     fun getArticles() = liveData(Dispatchers.IO){
         emit(Resource.loading(data = null))
         try {
-            emit(Resource.success(data = apiHelper.getArticles(key)))
+            if (isFr)
+                emit(Resource.success(data = apiHelper.getArticles(key)))
+            else
+                emit(Resource.success(data = apiHelper.getEnArticles(key)))
         }catch (exception: Exception){
             emit(Resource.error(data = null, message = exception.message?: "Error Occurred!"))
         }
@@ -65,7 +70,10 @@ class AcademyRepository(private val academyHelper: AcademyHelper, private val ap
     fun getInterviewAsks() = liveData(Dispatchers.IO){
         emit(Resource.loading(data = null))
         try {
-            emit(Resource.success(data = apiHelper.getInterviewAsks(key)))
+            if (isFr)
+                emit(Resource.success(data = apiHelper.getInterviewAsks(key)))
+            else
+                emit(Resource.success(data = apiHelper.getEnInterviewAsks(key)))
         }catch (exception: Exception){
             emit(Resource.error(data = null, message = exception.message?: "Error Occurred!"))
         }
@@ -74,7 +82,10 @@ class AcademyRepository(private val academyHelper: AcademyHelper, private val ap
     fun getQuiz() = liveData(Dispatchers.IO) {
         emit(Resource.loading(data = null))
         try {
-            emit(Resource.success(data = apiHelper.getQuiz(key)))
+            if (isFr)
+                emit(Resource.success(data = apiHelper.getQuiz(key)))
+            else
+                emit(Resource.success(data = apiHelper.getEnQuiz(key)))
         }catch (exception: Exception){
             emit(Resource.error(data = null, message = exception.message?: "Error Occurred!"))
         }
@@ -90,8 +101,14 @@ class AcademyRepository(private val academyHelper: AcademyHelper, private val ap
             val bookmarks = academyHelper.getAllBookmark()
             val articlesBookmarked: MutableList<Article> = mutableListOf()
             bookmarks.forEach {
-                val article = apiHelper.getArticleById(it.articleId, key)
-                articlesBookmarked.add(article[0])
+                if (isFr){
+                    val article = apiHelper.getArticleById(it.articleId, key)
+                    articlesBookmarked.add(article[0])
+                }else{
+                    val article = apiHelper.getEnArticleById(it.articleId, key)
+                    articlesBookmarked.add(article[0])
+                }
+
             }
             emit(Resource.success(data = articlesBookmarked))
         }catch (exception: Exception){

@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="login_pic">550dp</dimen>
+    <dimen name="login_pic_margin">62dp</dimen>
+    <dimen name="login_txt_margin">68dp</dimen>
+    <dimen name="login_text_size">60sp</dimen>
+    <dimen name="login_typed_txt_size">65sp</dimen>
+    <dimen name="login_typed_txt_margin">26dp</dimen>
+    <dimen name="login_btn_margin">200dp</dimen>
+    <dimen name="login_btn_txt_size">26sp</dimen>
+    <dimen name="login_btn_height">80dp</dimen>
+    <dimen name="top_article_txt_size">34sp</dimen>
+    <dimen name="top_article_txt_width">380dp</dimen>
+    <dimen name="top_article_txt_margin">54dp</dimen>
+    <dimen name="top_article_pic_margin">-350dp</dimen>
+    <dimen name="top_article_kotlin_pic_margin">10dp</dimen>
+</resources>

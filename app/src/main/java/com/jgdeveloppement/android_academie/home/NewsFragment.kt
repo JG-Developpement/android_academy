@@ -62,7 +62,6 @@ class NewsFragment : Fragment(), ArticleAdapter.OnClickItem {
         articles.lastOrNull { it.categories == Categories.SECURITY || it.categories == Categories.NEWS || it.categories == Categories.GITHUB || it.categories == Categories.OTHER }
             ?.let { article ->
                 binding.otherTopArticleTitle.text = article.title
-                binding.seeOtherTopArticle.setOnClickListener { navigateToArticle(article.id, article.categories) }
                 binding.otherTopArticleCard.setOnClickListener { navigateToArticle(article.id, article.categories) }
                 binding.otherBookmarkBtn.setOnClickListener {
                     val bookmark = Bookmark(null, article.id, 1)

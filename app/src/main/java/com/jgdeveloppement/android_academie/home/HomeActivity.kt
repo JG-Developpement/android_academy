@@ -8,6 +8,7 @@ import android.database.Cursor
 import android.database.MatrixCursor
 import android.os.Bundle
 import android.provider.BaseColumns
+import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
 import android.view.View
@@ -57,7 +58,6 @@ class HomeActivity : AppCompatActivity() {
         setBottomNavigation()
     }
 
-
     override fun onResume() {
         super.onResume()
         setSupportActionBar(binding.toolbar)
@@ -103,64 +103,69 @@ class HomeActivity : AppCompatActivity() {
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
-        menuInflater.inflate(R.menu.toolbar_menu, menu)
-        searchView = menu.findItem(R.id.search)?.actionView as SearchView
+        when (navController.currentDestination?.id) {
+            R.id.homeFragment2, R.id.askFragment, R.id.bookmarksFragment -> {
+                menuInflater.inflate(R.menu.toolbar_menu, menu)
+                searchView = menu.findItem(R.id.search)?.actionView as SearchView
 
-        val icon: ImageView = searchView.findViewById(androidx.appcompat.R.id.search_button)
-        icon.setImageResource(R.drawable.loupe_svgrepo_com)
+                val icon: ImageView = searchView.findViewById(androidx.appcompat.R.id.search_button)
+                icon.setImageResource(R.drawable.loupe_svgrepo_com)
 
-        val closeIcon: ImageView = searchView.findViewById(androidx.appcompat.R.id.search_close_btn)
-        closeIcon.setImageResource(R.drawable.close)
+                val closeIcon: ImageView = searchView.findViewById(androidx.appcompat.R.id.search_close_btn)
+                closeIcon.setImageResource(R.drawable.close)
 
-        val face = ResourcesCompat.getFont(this, R.font.shadows_light)
-        val searchText = searchView.findViewById<View>(androidx.appcompat.R.id.search_src_text) as AutoCompleteTextView
-        searchText.threshold = 1
-        searchText.typeface = face
+                val face = ResourcesCompat.getFont(this, R.font.shadows_light)
+                val searchText = searchView.findViewById<View>(androidx.appcompat.R.id.search_src_text) as AutoCompleteTextView
+                searchText.threshold = 1
+                searchText.typeface = face
 
-        //autocomplete
-        val from = arrayOf(SearchManager.SUGGEST_COLUMN_TEXT_1)
-        val to = intArrayOf(R.id.article_title)
-        val cursorAdapter = SimpleCursorAdapter(this, R.layout.search_item, null, from, to, CursorAdapter.FLAG_REGISTER_CONTENT_OBSERVER)
-        searchView.suggestionsAdapter = cursorAdapter
+                //autocomplete
+                val from = arrayOf(SearchManager.SUGGEST_COLUMN_TEXT_1)
+                val to = intArrayOf(R.id.article_title)
+                val cursorAdapter = SimpleCursorAdapter(this, R.layout.search_item, null, from, to, CursorAdapter.FLAG_REGISTER_CONTENT_OBSERVER)
+                searchView.suggestionsAdapter = cursorAdapter
 
-        searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
-            override fun onQueryTextSubmit(query: String?): Boolean {
-                hideKeyboard(binding.activityHomeLayout)
-                navigateToArticle(null, null, true, query)
-                return false
-            }
-            override fun onQueryTextChange(newText: String?): Boolean {
-                val cursor = MatrixCursor(arrayOf(BaseColumns._ID, SearchManager.SUGGEST_COLUMN_TEXT_1, SearchManager.SUGGEST_COLUMN_TEXT_2))
-                newText?.let {
-                    Utils.articleListSearch.forEach {
-                        if (it.title.contains(newText, true))
-                            cursor.addRow(arrayOf(it.id, it.title, it.categories.name))
-                        cursorAdapter.changeCursor(cursor)
+                searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
+                    override fun onQueryTextSubmit(query: String?): Boolean {
+                        hideKeyboard(binding.activityHomeLayout)
+                        navigateToArticle(null, null, true, query)
+                        return false
                     }
-                }
+                    override fun onQueryTextChange(newText: String?): Boolean {
+                        val cursor = MatrixCursor(arrayOf(BaseColumns._ID, SearchManager.SUGGEST_COLUMN_TEXT_1, SearchManager.SUGGEST_COLUMN_TEXT_2))
+                        newText?.let {
+                            Utils.articleListSearch.forEach {
+                                if (it.title.contains(newText, true))
+                                    cursor.addRow(arrayOf(it.id, it.title, it.categories.name))
+                                cursorAdapter.changeCursor(cursor)
+                            }
+                        }
 
-                return true
+                        return true
+                    }
+                })
+
+                searchView.setOnSuggestionListener(object: SearchView.OnSuggestionListener{
+                    override fun onSuggestionSelect(position: Int): Boolean {
+                        return false
+                    }
+
+                    @SuppressLint("Range")
+                    override fun onSuggestionClick(position: Int): Boolean {
+                        val cursor = searchView.suggestionsAdapter.getItem(position) as Cursor
+                        val selectionId = cursor.getInt(cursor.getColumnIndex(BaseColumns._ID))
+                        val categories = cursor.getString(cursor.getColumnIndex(SearchManager.SUGGEST_COLUMN_TEXT_2))
+
+                        hideKeyboard(binding.activityHomeLayout)
+                        navigateToArticle(selectionId, Categories.valueOf(categories), false, null)
+
+                        return true
+                    }
+
+                })
             }
-        })
-
-        searchView.setOnSuggestionListener(object: SearchView.OnSuggestionListener{
-            override fun onSuggestionSelect(position: Int): Boolean {
-                return false
-            }
-
-            @SuppressLint("Range")
-            override fun onSuggestionClick(position: Int): Boolean {
-                val cursor = searchView.suggestionsAdapter.getItem(position) as Cursor
-                val selectionId = cursor.getInt(cursor.getColumnIndex(BaseColumns._ID))
-                val categories = cursor.getString(cursor.getColumnIndex(SearchManager.SUGGEST_COLUMN_TEXT_2))
-
-                hideKeyboard(binding.activityHomeLayout)
-                navigateToArticle(selectionId, Categories.valueOf(categories), false, null)
-
-                return true
-            }
-
-        })
+            else -> {}
+        }
         return super.onCreateOptionsMenu(menu)
     }
 
